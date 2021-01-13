@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<title>目標変更画面</title>
+<style>
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(rgb(57, 66, 66), rgb(57, 66, 66));
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+	margin: 0px;
+}
+
+.container {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+}
+
+header {
+	background-image: url(/imges/head.png);
+	margin: 0;
+	width: 100vw;
+	height: 150px;
+}
+
+section {
+	margin-left: 200px;
+	margin-right: auto;
+	color: #F2F2F2
+}
+
+.title {
+	position: relative;
+	padding: 0.25em 1em;
+	border: solid 2px black;
+	border-radius: 3px 0 3px 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+		rgb(239, 239, 239));
+	color: #736359;
+	margin-top: auto;
+	border-color: #696969;
+}
+
+a {
+	padding: 0 10px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%,
+		#2C3F59 50%);
+	background-position: 0 0;
+	background-size: 200% auto;
+	transition: .3s;
+	color: #736359;
+	margin-left: 40px;
+}
+
+a:hover {
+	background-position: -100% 0;
+	color: #fff;
+}
+
+.btn1 {
+	background-color: #F2F2F2;
+	border-radius: 4px;
+	color: #2C3F59;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+	font-size: 20px;
+	margin-left: 800px;
+}
+
+.btn1:hover {
+	background-color: #8C7A70;
+}
+
+label {
+	position: relative;
+	padding: 0.25em 1em;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	color: #F2F2F2;
+	margin-top: auto;
+	border-color: #696969;
+	font-size: 30px;
+}
+
+table {
+	border-collapse: collapse;
+	margin-right: auto;
+	margin-left: 60px;
+	padding: 0;
+	width: 800px;
+	table-layout: fixed;
+	border: solid;
+	border-color:#fff;
+	border-radius: 8px;
+	padding: 0;
+	color: #402620;
+}
+
+table th {
+	color: #fff;
+	font-size: 20px;
+	border-right: 1px solid #bbb;
+	text-align: center;
+	background-color: #2C3F59;
+	width: 200px;
+}
+
+table tr {
+	font-size: 20px;
+	background-color: #fff;
+	border-bottom: 1px solid #bbb;
+}
+
+table td {
+	padding: 13px;
+	border-right: 1px solid #bbb;
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<br> <a href="/backlogin">目標一覧に戻る</a> <br> <br>
+			<h2 class="title">目標の編集</h2>
+		</header>
+
+		<br>
+		<br>
+		<section>
+			<form action="/editGoal" method="post">
+				<table border=1>
+					<tr>
+						<th>目標</th>
+						<th>期間（開始）</th>
+						<th>期間（終了）</th>
+
+					</tr>
+
+					<tr>
+						<td><input type="text" name=goal th:value="${goalList.goal}"></td>
+						<td><input type="text" name=start
+							th:value="${goalList.start}"></td>
+						<td><input type="text" name=finish
+							th:value="${goalList.finish}"></td>
+					</tr>
+				</table>
+				<br> <input class="btn1" type="submit" value="この内容に変更">
+
+			</form>
+		</section>
+	</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<title>エラーメッセージ</title>
+<style>
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(rgb(57, 66, 66), rgb(57, 66, 66));
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+	margin: 0px;
+}
+
+.container {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+}
+
+header {
+	background-image: url(/imges/head.png);
+	margin: 0;
+	width: 100vw;
+	height: 150px;
+}
+
+section {
+	margin-left: 500px;
+	margin-right: auto;
+	color: #F2F2F2;
+	font-size:20px;
+}
+
+.title {
+	position: relative;
+	padding: 0.25em 1em;
+	border: solid 2px black;
+	border-radius: 3px 0 3px 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+		rgb(239, 239, 239));
+	color: #736359;
+	margin-top: auto;
+	border-color: #696969;
+}
+
+a {
+	padding: 0 10px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%,
+		#2C3F59 50%);
+	background-position: 0 0;
+	background-size: 200% auto;
+	transition: .3s;
+	color: #736359;
+	margin-left: 40px;
+}
+
+a:hover {
+	background-position: -100% 0;
+	color: #fff;
+}
+
+ul li{
+margin-top:10px;
+margin-buttom:10px;
+
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<br> <a href="/backT">戻る</a> <br>
+			<br>
+			<h2 class="title">エラーが発生しました</h2>
+		</header>
+<br>
+<br>
+		<section>
+			<ul>
+				<li th:each="ml : ${msgList}" th:text="${ml}"></li>
+			</ul>
+		</section>
+	</div>
+</body>
+</html>

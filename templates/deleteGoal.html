@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>目標削除確認画面</title>
+</head>
+
+<body>
+<h1>削除確認</h1>
+	<form action="/deleteGoal" method="post">
+		<table border=1>
+				<tr>
+					<td>目標</td>
+					<td>期間（開始）</td>
+					<td>期間（終了）</td>
+					<td>実行項目達成度</td>
+				</tr>
+				<tr th:each="gl:${goalList}">
+					<td th:text="${gl.goal}"></td>
+					<td th:text="${gl.start}"></td>
+					<td th:text="${gl.finish}"></td>
+					<td th:text="${gl.level}"></td>
+		</table>
+		<input type="submit" value="この内容を削除します">
+	</form>
+</body>
+
+</html>

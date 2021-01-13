@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+<title>タスク一覧表示画面</title>
+
+<style>
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(rgb(57, 66, 66), rgb(57, 66, 66));
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+}
+
+/*.container {
+	margin-left: 0px;
+	margin-right: 0px;
+}*/
+header {
+	background-image: url(/imges/head.png);
+	margin: 0;
+	width: 100vw;
+	height: 150px;
+}
+
+.container {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+}
+
+section {
+	margin-left: 200px;
+	margin-right: auto;
+}
+
+.title {
+	position: relative;
+	padding: 0.25em 1em;
+	border: solid 2px black;
+	border-radius: 3px 0 3px 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+		rgb(239, 239, 239));
+	color: #736359;
+	margin-top: auto;
+	border-color: #696969;
+}
+
+.t1 {
+	margin: 0px;
+}
+
+.subtitle {
+	/*background-color:pink;*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: auto;
+	marrgin-left: 0px;
+	display: flex;
+}
+
+.subtitle .s1 {
+	/*background-color:skyblue;*/
+	color: #fff;
+}
+
+.span1 {
+	margin: 0 0 0 auto;
+	text-align: right;
+	color: #fff;
+}
+
+.span2 {
+	/*background-color: skyblue;*/
+	margin: 0 0 0 auto;
+	color: #fff;
+}
+
+.routine {
+	padding: 0.5em 1em;
+	background: -moz-linear-gradient(#ffb03c, #ff708d);
+	background: -webkit-linear-gradient(#ffb03c, #ff708d);
+	background: linear-gradient(to right, #ffb03c, #ff708d);
+	color: #FFF;
+	margin-top: 0px;
+	margin-bottom: 60px;
+	border: solid;
+	border-radius: 8px;
+}
+
+.r1 {
+	/*background-color: skyblue;*/
+	text-align: center;
+	color: #fff;
+	margin-bottom: 10px;
+	margin-top: 40px;
+}
+
+.routine ul {
+	/*background-color: yellow;*/
+	text-align: center;
+	list-style-type: none;
+	padding-left: 0px;
+	font-size: 25px
+}
+
+.routine ul li {
+	margin-bottom: 15px;
+}
+
+.task {
+	/*background-color:#fff;*/
+	
+}
+
+body {
+	width: 100%;
+}
+
+h2 {
+	text-align: center;
+}
+
+.monotone-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border: none;
+	color: #000;
+}
+
+table {
+	border-collapse: collapse;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0;
+	width: auto;
+	table-layout: fixed;
+	border: solid;
+	border-color:#fff;
+	border-radius: 8px;
+	padding: 0;
+	color: #402620;
+}
+
+table th {
+	color: #fff;
+	font-size: 20px;
+	padding: 15px 0;
+	border-right: 1px solid #bbb;
+	text-align: center;
+	background-color: #2C3F59;
+	padding: 15px 0;
+	width: 200px;
+}
+
+table tr {
+	font-size: 20px;
+	background-color: #fff;
+	border-bottom: 1px solid #bbb;
+}
+
+table td {
+	border-right: 1px solid #bbb;
+	text-align: center;
+}
+
+.ta1 {
+	text-align: center;
+	color: #fff;
+}
+
+.logout {
+	margin-left: 50px
+}
+
+a {
+	padding: 0 10px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%,
+		#2C3F59 50%);
+	background-position: 0 0;
+	background-size: 200% auto;
+	transition: .3s;
+	color: #8C7A70;
+	margin-left: 40px;
+}
+
+a:hover {
+	background-position: -100% 0;
+	color: #fff;
+}
+
+hr {
+	margin-left: 200px;
+	margin-right: auto;
+}
+
+.btn1 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+
+.btn1:hover {
+	background-color: #8C7A70;
+}
+
+.btn2 {
+	background: linear-gradient(-45deg, #22e3bb 0%, #2196F3 100%);
+	color: #FFF;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.btn2:hover {
+	background: -moz-linear-gradient(#ffb03c, #ff708d);
+	background: -webkit-linear-gradient(#ffb03c, #ff708d);
+	background: linear-gradient(to right, #ffb03c, #ff708d);
+}
+
+.btn3 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+
+.btn3:hover {
+	background-color: #8C7A70;
+}
+</style>
+
+</head>
+<body>
+
+
+	<div class="container">
+		<header>
+			<br> <a href="/backlogin">目標一覧に戻る </a><a class="logout" href="/">ログアウト</a>
+			<br> <br>
+			<section class="title">
+				<h2 class="t1">
+					<span th:text="${session.name}"></span>さんのルーチン＆タスクリスト
+				</h2>
+			</section>
+		</header>
+		<br>
+		<p class="span1" th:text="${messageP}"></p>
+		<section class="subtitle">
+			<h3 class="s1" th:text="'目標：' + ${session.goal}"></h3>
+			<span class="span2" th:text="'現在のポイント：' + ${session.point} +'ポイント'"></span>
+		</section>
+
+		<hr color="#fff">
+
+		<section>
+			<h3 class="r1">ルーチン一覧</h3>
+		</section>
+
+		<section class="routine">
+			<ul>
+
+				<li th:each="rl:${routineList}" th:text="${rl.routine}"></li>
+
+			</ul>
+		</section>
+
+		<hr color="#fff">
+
+		<section class="task">
+			<h3 class="ta1">タスク一覧</h3>
+			<form action="/task" method="post">
+				<table border=1>
+					<tr>
+						<th>タスク</th>
+						<th>期間（開始）</th>
+						<th>期間（終了）</th>
+						<th>達成度</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr th:each="tl:${taskList}">
+						<td th:text="${tl.task}"></td>
+						<td th:text="${tl.start}"></td>
+						<td th:text="${tl.finish}"></td>
+						<td th:text="${tl.level}"></td>
+						<td>
+							<button type="submit" class="btn1" name="edit"
+								th:value="${tl.code}">編集</button>
+						</td>
+						<td>
+							<button class="btn2" th:if="${tl.level=='100%'}" type="submit"
+								name="rankup" th:value="${tl.code}">昇華</button>
+					</tr>
+				</table>
+				<br> <input type="submit" class="btn3" name="add"
+					value="タスクを追加する">
+			</form>
+			<!-- タスクは５つまで -->
+			<span th:text="${messageAT}" style="color: yellow"></span>
+		</section>
+		
+		<hr>
+		<hr color="#fff">
+		
+	</div>
+</body>
+</html>

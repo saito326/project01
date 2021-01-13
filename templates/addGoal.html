@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>目標追加画面</title>
+</head>
+<body>
+	<section>
+		<h1>目標追加</h1>
+		<form action="/addGoal" method="post">
+			目標:　　　　<input type="text" name="goal">
+			<br>
+			期間（開始）:<input type="text" name="start">
+			<br> 
+			期間（終了）:<input type="text" name="finish">
+			<br>
+		    <input type="submit" value="追加">
+		</form>
+	</section>
+
+	<span th:text="${message}" style="color: red"></span>
+
+</body>
+</html>

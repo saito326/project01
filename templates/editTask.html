@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タスク変更画面</title>
+</head>
+
+<body>
+<h1>タスク編集</h1>
+	<form action="/editTask" method="post">
+		<table border="1">
+			<tr>
+				<td>タスク</td>
+				<td>期間（開始）</td>
+				<td>期間（終了）</td>
+				<td>完成度</td>
+			</tr>
+
+			<tr>
+				<td><input type="text" name=task th:value="${taskList.task}"></td>
+				<td><input type="text" name=start  th:value="${taskList.start}"></td>
+				<td><input type="text" name=finish th:value="${taskList.finish}"></td>
+				<td>
+					<select name=level>
+					<option th:each="ns:${#numbers.sequence(0,100,25)}"
+				            th:value="${ns+'%'}"
+				            th:text="${ns +'%'}"
+				            th:selected="${ns +'%'==taskList.level}" >
+					</select>
+				</td>
+		</table>
+		<input type="submit" value="この内容に変更">
+	</form>
+	<hr>
+	<a href="/backedit">戻る</a>
+	
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タスク追加画面</title>
+</head>
+<body>
+	<section>
+		<h1>タスク追加</h1>
+		<form action="/addTask" method="post">
+			タスク:　　　<input type="text" name="task">
+			<br>
+			期間（開始）:<input type="text" name="start">
+			<br> 
+			期間（終了）:<input type="text" name="finish">
+			<br>
+		    <input type="submit" value="追加">
+		</form>
+	</section>
+
+	<span th:text="${message}" style="color: red"></span>
+	
+	<br>
+	<hr>
+	<a href="/backedit">戻る</a>
+
+</body>
+</html>

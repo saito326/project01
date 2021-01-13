@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<title>目標一覧表示画面</title>
+<style>
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(rgb(57, 66, 66), rgb(57, 66, 66));
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+}
+
+header {
+	background-image: url(/imges/head.png);
+	margin: 0;
+	width: 100vw;
+	height: 150px;
+}
+
+header a {
+	margin-left: 40px;
+	color: #8C7A70;
+}
+
+.container {
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+section {
+	margin-left: 200px;
+	margin-right: auto;
+	color: #fff;
+}
+
+.title {
+	position: relative;
+	padding: 0.25em 1em;
+	border: solid 2px black;
+	border-radius: 3px 0 3px 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+		rgb(239, 239, 239));
+	color: #736359;
+	margin-top: auto;
+	border-color: #696969;
+}
+
+a {
+	padding: 0px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%,
+		#2C3F59 50%);
+	background-position: 0 0;
+	background-size: 200% auto;
+	transition: .3s;
+	color: #F2F2F2;
+	font-size:20px;
+}
+
+a:hover {
+	background-position: -100% 0;
+	color: #fff;
+}
+
+table{
+
+}
+
+td {
+	color: #fff;
+	text-align:center;
+	font-size:20px;
+}
+
+h3 {
+	position: relative;
+	padding: 0.5em;
+	background: #8C7A70;
+	color: white;
+	text-align: center;
+}
+
+h3::before {
+	position: absolute;
+	content: '';
+	top: 100%;
+	left: 0;
+	border: none;
+	border-bottom: solid 15px transparent;
+	border-right: solid 20px rgb(255, 255, 255, 0.69);
+}
+
+.btn1 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+
+.btn1:hover {
+	background-color: rgba(255, 255, 255, .3);
+}
+
+.btn2 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+
+.btn2:hover {
+	background-color: rgba(255, 255, 255, .3);
+}
+
+.btn3 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+
+.btn3:hover {
+	background-color: rgba(255, 255, 255, .3);
+}
+</style>
+
+
+</head>
+<body>
+	<div class="container">
+		<header class="header">
+			<br> <a href="/">ログアウト</a> <br> <br>
+
+			<h2 class="title">
+				<span th:text="${session.name}"></span>さんのアカウント
+			</h2>
+		</header>
+
+
+		<section class="subtitle">
+			<br> <br>
+			<h3 class="point" th:text="${messageTP}"></h3>
+			<br> <span class="ranking"><a href="/ranking">全ユーザー！行動改善ランキングはこちら！</a></span>
+		</section>
+
+		<hr>
+
+		<section class="goal">
+			<h2>目標一覧</h2>
+			<form action="/goal" method="post">
+				<table class="table">
+					<tr>
+						<td>目標</td>
+						<td>期間（開始）</td>
+						<td>期間（終了）</td>
+						<td>達成度ポイント</td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr th:each="gl:${goalList}">
+						<td><a th:href="'/goal/code/'+${gl.code}"
+							th:text="${gl.goal}"></a></td>
+						<td th:text="${gl.start}"></td>
+						<td th:text="${gl.finish}"></td>
+						<td th:text="${gl.level}+'P'"></td>
+						<td>
+							<button class="btn1" type="submit" name="edit"
+								th:value="${gl.code}">編集</button>
+						</td>
+						<td>
+							<button type="submit" class="btn2" name="delete"
+								th:value="${gl.code}">削除</button>
+					</tr>
+				</table>
+
+				<hr color="#fff">
+
+				<input type="submit" class="btn3" name="add" value="目標を追加する">
+				<br>
+				<hr>
+			</form>
+		</section>
+
+	</div>
+</body>
+</html>

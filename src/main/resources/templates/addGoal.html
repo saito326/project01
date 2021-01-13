@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<title>目標追加画面</title>
+
+<style>
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(rgb(57, 66, 66), rgb(57, 66, 66));
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+}
+
+.container {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 0px;
+}
+
+header {
+	background-image: url(/imges/head.png);
+	margin: 0;
+	width: 100vw;
+	height: 150px;
+	
+}
+
+section {
+	margin-left: 200px;
+	margin-right: auto;
+	color: #F2F2F2
+}
+
+.title {
+	position: relative;
+	padding: 0.25em 1em;
+	border: solid 2px black;
+	border-radius: 3px 0 3px 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-top: 100px;
+	width: auto;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8),
+		rgb(239, 239, 239));
+	color: #736359;
+	margin-top: auto;
+	border-color: #696969;
+}
+
+a {
+	padding: 0 10px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%,
+		#2C3F59 50%);
+	background-position: 0 0;
+	background-size: 200% auto;
+	transition: .3s;
+	color: #736359;
+	margin-left:40px;
+}
+
+a:hover {
+	background-position: -100% 0;
+	color: #fff;
+}
+
+.input1 {
+	border: 5px solid #F2E7AC;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	color: #000000;
+	font-size: 13px;
+	padding: 10px;
+	height: 40px;
+	width: 460px;
+}
+
+.input1  label {
+	display: block;
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
+.input2 {
+	border: 5px solid #F2E7AC;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	color: #000000;
+	font-size: 13px;
+	padding: 10px;
+	height: 40px;
+	width: 460px;
+}
+
+.input2  label {
+	display: block;
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
+.input3 {
+	border: 5px solid #F2E7AC;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	color: #000000;
+	font-size: 13px;
+	padding: 10px;
+	height: 40px;
+	width: 460px;
+}
+
+.input3  label {
+	display: block;
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
+.textgoal {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.textstart {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.textfinish {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+input[type="text"]:focus {
+	box-shadow: 0 0 7px #F2E7AC;
+	border: 5px solid #F2E7AC;
+	background-color: #fff;
+}
+
+.btn1 {
+	background-color: #2C3F59;
+	border-radius: 4px;
+	color: #fff;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px
+		rgba(255, 255, 255, .7);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container">
+		<header>
+			<br> <a href="/backlogin">目標一覧に戻る</a> <br> <br>
+			<h2 class="title">目標追加</h2>
+		</header>
+
+		<section>
+			<form action="/addGoal" method="post">
+				<div class="textgoal">
+					<label>目標</label> <br> <input class="input1" type="text"
+						name="goal" th:value="${session.goal}">
+				</div>
+
+				<div class="textstart">
+					期間（開始） <br> <input class="input2" type="text" name="start"
+						th:value="${session.start}">
+				</div>
+
+				<div class="finish">
+					期間（終了） <br> <input class="input3" type="text" name="finish"
+						th:value="${session.finish}"> <br>
+				</div>
+				<br> <input class="btn1" type="submit" value="追加">
+			</form>
+		</section>
+
+		<br>
+		<hr>
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>目標一覧表示画面</title>
+</head>
+<body>
+
+	<section>
+		<h2>
+			<span th:text="${session.name}"></span>さんの目標リスト
+		</h2>
+	</section>
+
+	<hr>
+
+	<section>
+		<h1>目標一覧</h1>
+		<form action="/goal" method="post">
+			<table border=1>
+				<tr>
+					<td>目標</td>
+					<td>期間（開始）</td>
+					<td>期間（終了）</td>
+					<td>実行項目達成度</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr th:each="gl:${goalList}">
+					<td><a th:href="'/goal/code/'+${gl.code}" th:text="${gl.goal}"></a></td>
+					<td th:text="${gl.start}"></td>
+					<td th:text="${gl.finish}"></td>
+					<td th:text="${gl.level}"></td>
+					<td>
+
+
+						<button type="submit" name="edit" th:value="${gl.code}">編集</button>
+					</td>
+					<td>
+
+						<button type="submit" name="delete" th:value="${gl.code}">削除</button>
+				</tr>
+			</table>
+
+			<input type="submit" name="add" value="目標を追加する">
+		</form>
+	</section>
+
+	<hr>
+
+	<a href="/">ログアウト</a>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>エラーメッセージ</title>
+</head>
+<body>
+
+<ul>
+<li th:each="ml : ${msgList}" th:text="${ml}">
+</li>
+</ul>
+
+<a href="/back">戻る</a>
+
+</body>
+</html>
